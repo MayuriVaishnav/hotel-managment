@@ -1,0 +1,51 @@
+create database hospital_manage;
+use hospital_manage;
+
+//Table For Admin
+create table Admin(userId int primary key auto_increment not null,
+Username varchar(60) not null
+);
+
+//Table For Staff
+create table Staff(StaffId int primary key not null,
+StaffName varchar(70) not null,
+Designation varchar(80) not null
+);
+
+//Table for Patient
+
+create table Patient(
+AdmissionId int not null primary key,
+AdmissionDate date not null,
+PatientName varchar(60),
+Gender varchar(50),
+Age int 
+);
+
+//Table for Patient_service
+create table Patient_service(
+Admissionid int not null primary key,
+foreign key(Admissionid) references Patient(AdmissionId),
+
+service_name varchar(80)
+);
+
+
+//table For Room
+create table Room(roomId int primary key auto_increment not null,
+roomNo int not null,
+roomCost varchar(100) );
+
+//Table for Payment Bill
+
+create table Payment_Bill(paymentId int primary key,
+admissionId int,
+foreign key(admissionId) references Patient_service(Admissionid),
+total varchar(100)
+);
+
+//Table For Doctor
+create table Doctor(DoctorId int primary key,
+D_name varchar(50),
+Specialization varchar(50)
+);
